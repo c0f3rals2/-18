@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connie Feral — 300+ Prompts & Sistema Avatar AI</title>
+    <!-- Google Fonts: Elegancia y modernidad sans-serif/serif para un tono Cute Editorial -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ---- VARIABLES DE COLOR Y EFECTOS ESTÉTICOS ---- */
+        :root {
+            /* Colores oficiales de la Paleta Elegida */
+            --petal-rouge: #FF7099;
+            --rose-punch: #DF367C;
+            --strawberry-red: #FF3E41;
+            --vintage-berry: #883955;
+            --vintage-grape: #4C3549;
+            
+            /* Fondos y textos adaptados */
+            --white: #FFF5F7; /* Blanco crema con tintes de pétalo */
+            --gray: #C4B2BC;  /* Gris satinado vintage */
+            --bg-dark: #0F0911; /* Negro uva profundo aterciopelado */
+            --card-glass: rgba(76, 53, 73, 0.45); /* Base de Vintage Grape glass */
+            --border-glass: rgba(255, 112, 153, 0.15); /* Bordes suaves Petal Rouge */
+            --neon-glow: rgba(223, 54, 124, 0.4);
+        }
+
+        /* ---- RESET & BASE ---- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            cursor: crosshair;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(223, 54, 124, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(136, 57, 85, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* ---- CANVAS INTERACTIVO DE AURORAS Y PURPURINA ---- */
+        #ambient-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.75;
+        }
+
+        /* ---- CONTENEDOR PRINCIPAL ---- */
+        .page-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ---- HEADER / BRANDING ---- */
+        header {
+            width: 100%;
+            padding: 24px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 10px rgba(255, 112, 153, 0.3);
+        }
+
+        .brand-logo span {
+            color: var(--petal-rouge);
+        }
+
+        .tag-pill-top {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--petal-rouge);
+            background: rgba(255, 112, 153, 0.1);
+            border: 1px solid rgba(255, 112, 153, 0.25);
+            padding: 4px 12px;
+            border-radius: 999px;
+            text-transform: uppercase;
+        }
+
+        /* ---- HERO / HOOK DE CONVERSIÓN ---- */
+        .hero {
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tag-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 112, 153, 0.08);
+            border: 1px solid rgba(255, 112, 153, 0.2);
+            color: var(--petal-rouge);
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: clamp(11px, 2vw, 13px);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+            animation: softPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes softPulse {
+            0%, 100% { transform: scale(1); opacity: 0.95; }
+            50% { transform: scale(1.02); opacity: 1; box-shadow: 0 0 15px rgba(255, 112, 153, 0.15); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 7vw, 76px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--white) 0%, var(--petal-rouge) 40%, var(--rose-punch) 70%, var(--strawberry-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 10px rgba(255, 112, 153, 0.25));
+        }
+
+        .hero-desc {
+            font-size: clamp(15px, 2.5vw, 19px);
+            line-height: 1.6;
+            color: var(--gray);
+            max-width: 680px;
+            margin: 0 auto 36px;
+            font-weight: 300;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---- BOTONES PREMIUM ---- */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--rose-punch) 0%, var(--strawberry-red) 100%);
+            color: var(--white);
+            padding: 16px 36px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 25px rgba(223, 54, 124, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(223, 54, 124, 0.45);
+            filter: brightness(1.05);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--white);
+            padding: 15px 36px;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 112, 153, 0.08);
+            border-color: var(--petal-rouge);
+        }
+
+        /* ---- COVER 300 PROMPTS SECTION ---- */
+        .cover-section {
+            padding: 0 20px 60px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cover-img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(76, 53, 73, 0.5);
+            border: 1px solid rgba(255, 112, 153, 0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .cover-img:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(223, 54, 124, 0.4);
+        }
+
+        /* ---- GALERÍA CIRCULAR GIGANTE (F1 a F5) ---- */
+        .gallery-container {
+            width: 100%;
+            padding: 0 20px;
+            margin-bottom: 80px;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 20px 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            scroll-behavior: smooth;
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-item {
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            position: relative;
+        }
+
+        .gallery-item .circle-photo {
+            width: clamp(240px, 50vw, 320px);
+            height: clamp(240px, 50vw, 320px);
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            border: 2px solid rgba(255, 112, 153, 0.3);
+            box-shadow: 
+                0 0 15px rgba(255, 112, 153, 0.2),
+                0 0 30px rgba(223, 54, 124, 0.25),
+                0 0 45px rgba(136, 57, 85, 0.15);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-item:hover .circle-photo {
+            transform: scale(1.03) rotate(1deg);
+            border-color: var(--petal-rouge);
+            box-shadow: 
+                0 0 25px rgba(255, 112, 153, 0.35),
+                0 0 50px rgba(223, 54, 124, 0.45),
+                0 0 70px rgba(136, 57, 85, 0.3);
+        }
+
+        /* ---- INTERACTIVE NSFW TEASER BLOCK ---- */
+        .nsfw-section {
+            padding: 40px 20px 100px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .nsfw-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: var(--white);
+        }
+
+        .nsfw-container {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 4/5;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid var(--border-glass);
+            box-shadow: 0 15px 50px rgba(223, 54, 124, 0.25);
+            background: #000;
+        }
+
+        .nsfw-container img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .img-naked {
+            opacity: 0;
+            filter: blur(25px) brightness(0.6);
+            transform: scale(1.1);
+        }
+
+        .nsfw-warning-badge {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 62, 65, 0.15);
+            border: 1px solid rgba(255, 62, 65, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.6s ease;
+            width: 80%;
+        }
+
+        .warning-icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .warning-text {
+            font-family: 'Space Mono', monospace;
+            color: var(--strawberry-red);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .warning-sub {
+            font-size: 11px;
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        /* Active State (Revealed) */
+        .nsfw-container.revealed .img-ropa {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        .nsfw-container.revealed .img-naked {
+            opacity: 1;
+            filter: blur(15px) brightness(0.8); /* Fuerte blur para cumplir normas */
+            transform: scale(1);
+        }
+        .nsfw-container.revealed .nsfw-warning-badge {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        /* ---- TÍTULOS DE SECCIÓN ---- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 0 20px;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--petal-rouge);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        /* ---- NUEVO SISTEMA DE TIERS (300 Prompts & Modelo) ---- */
+        .pricing-section {
+            padding: 0 20px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .tier-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 40px 32px;
+            backdrop-filter: blur(30px);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 112, 153, 0.3);
+            box-shadow: 0 15px 40px rgba(136, 57, 85, 0.15);
+        }
+
+        /* Bundle / VIP Tier */
+        .tier-card.featured {
+            border: 2px solid var(--petal-rouge);
+            background: linear-gradient(180deg, rgba(76, 53, 73, 0.6) 0%, rgba(15, 9, 17, 0.5) 100%);
+            box-shadow: 0 10px 40px rgba(255, 112, 153, 0.15);
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--petal-rouge), var(--rose-punch));
+            color: #120721;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 4px 16px;
+            border-radius: 999px;
+            box-shadow: 0 4px 15px rgba(255, 112, 153, 0.3);
+            white-space: nowrap;
+        }
+
+        .tier-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .tier-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .tier-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 40px;
+            flex-grow: 1;
+        }
+
+        .tier-features li {
+            font-size: 14px;
+            color: var(--white);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        .tier-features li::before {
+            content: '✦';
+            color: var(--petal-rouge);
+            flex-shrink: 0;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+        
+        .tier-features.bonus-list li::before {
+            content: '🎁';
+            color: transparent;
+            text-shadow: 0 0 0 var(--strawberry-red);
+            font-size: 14px;
+        }
+
+        .tier-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .tier-actions .btn-pay {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            padding: 14px 20px;
+            font-size: 14px;
+            border-radius: 10px;
+        }
+
+        /* ---- FINAL CALL TO ACTION ---- */
+        .final-cta-section {
+            padding: 80px 20px 120px;
+            text-align: center;
+            position: relative;
+        }
+
+        .final-cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-cta-container h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 6vw, 52px);
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .final-cta-container p {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+            max-width: 550px;
+            margin: 0 auto 36px;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer p {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--gray);
+            letter-spacing: 1px;
+        }
+
+        footer a {
+            color: var(--petal-rouge);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--strawberry-red);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero { padding: 40px 15px 60px; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; text-align: center; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas de Ambiente interactivo -->
+    <canvas id="ambient-canvas"></canvas>
+
+    <div class="page-wrapper">
+        
+        <!-- Header -->
+        <header>
+            <a href="#" class="brand-logo">CONNIE<span>FERAL</span></a>
+            <div class="tag-pill-top">DROP OFICIAL 2026</div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="tag-badge">
+                <span>🎀</span> SISTEMA PROBADO DE DISEÑO Y MONETIZACIÓN
+            </div>
+            <h1>El pack definitivo de <span>+300 Prompts AI</span></h1>
+            <p class="hero-desc">
+                Desbloqueá el diccionario exacto para generar lencería hiperrealista, poses explícitas y texturas orgánicas. Además, aprendé a generar tu propio modelo virtual consistente.
+            </p>
+            <div class="hero-ctas">
+                <a href="#pricing" class="btn-primary">OBTENER YA <span class="arrow-icon">→</span></a>
+                <a href="#nsfw" class="btn-ghost">Ver Transformación</a>
+            </div>
+        </section>
+
+        <!-- Cover 300 Prompts -->
+        <section class="cover-section">
+            <img src="portada300.png" alt="300 Prompts Cover" class="cover-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80';">
+        </section>
+
+        <!-- Galería de Fotos Circulares Gigantes (F1 a F5) -->
+        <section class="gallery-container">
+            <div class="gallery-scroll">
+                <div class="gallery-item">
+                    <img src="f1.png" alt="Ejemplo 1" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80';">
+                </div>
+                <div class="gallery-item">
+                    <img src="f2.png" alt="Ejemplo 2" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80';">
+                </div>
+                <div class="gallery-item">
+                    <img src="f3.png" alt="Ejemplo 3" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&q=80';">
+                </div>
+                <div class="gallery-item">
+                    <img src="f4.png" alt="Ejemplo 4" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=80';">
+                </div>
+                <div class="gallery-item">
+                    <img src="f5.png" alt="Ejemplo 5" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1563089145-599997674d42?w=400&q=80';">
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloque Interactivo Ropa -> Naked NSFW -->
+        <section class="nsfw-section" id="nsfw">
+            <h3 class="nsfw-title">Transformación Sin Censura</h3>
+            <p class="hero-desc" style="font-size: 14px; margin-bottom: 30px;">Toca la imagen para revelar la versión generada con nuestros prompts.</p>
+            
+            <div class="nsfw-container" onclick="this.classList.toggle('revealed')">
+                <!-- Estado 1: Ropa -->
+                <img src="ropa.png" class="img-ropa" alt="Modelo con Ropa" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80';">
+                
+                <!-- Estado 2: Naked (Oculto y con Blur fuerte) -->
+                <img src="naked.png" class="img-naked" alt="Modelo Sin Censura" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?w=500&q=80';">
+                
+                <!-- Warning Overlay -->
+                <div class="nsfw-warning-badge">
+                    <span class="warning-icon">🔞</span>
+                    <span class="warning-text">ADVERTENCIA</span>
+                    <span class="warning-sub">Versión Explícita Oculta</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Oferta (Estructura Nomadsapiens 300 Prompts + Modelo + Bonus) -->
+        <section class="pricing-section" id="pricing">
+            <div class="section-header">
+                <span class="section-label">El ecosistema completo</span>
+                <h2>Elige tu arsenal de creación</h2>
+            </div>
+            <div class="pricing-grid">
+                
+                <!-- Card 1: 300 Prompts -->
+                <div class="tier-card">
+                    <h3>Pack 300+ Prompts Exclusivos</h3>
+                    <p class="tier-desc">La biblioteca maestra de inyecciones sintácticas listas para usar. Copia, pega y genera contenido altamente monetizable en segundos.</p>
+                    <ul class="tier-features">
+                        <li>300+ prompts +18 listos para copiar y pegar.</li>
+                        <li>Organizados por categoría: Lencería, baño y gym.</li>
+                        <li>Escenas POV y fetiches ligeros.</li>
+                        <li>Packs PPV estructurados.</li>
+                        <li>Mensajes personalizados (Custom DMs) y más.</li>
+                    </ul>
+                    <div class="tier-actions">
+                        <a href="https://gumroad.com" class="btn-primary btn-pay">DESCARGAR PACK</a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Generar Modelo -->
+                <div class="tier-card">
+                    <h3>Genera tu Propio Modelo AI</h3>
+                    <p class="tier-desc">El método paso a paso para crear una identidad digital hiperrealista y mantener la consistencia de su rostro en cualquier pose.</p>
+                    <ul class="tier-features">
+                        <li>Configuración del modelo base y anatomía.</li>
+                        <li>Fijación de rostro para consistencia 100% exacta.</li>
+                        <li>Dominio de texturas de piel micro-dérmicas.</li>
+                        <li>Iluminación de estudio y control de escenarios.</li>
+                        <li>Workflows gratuitos y sin complicaciones.</li>
+                    </ul>
+                    <div class="tier-actions">
+                        <a href="https://gumroad.com" class="btn-primary btn-pay">OBTENER SISTEMA</a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Bundle + Bonus (DESTACADO) -->
+                <div class="tier-card featured">
+                    <div class="tier-badge">LA FÓRMULA VIRAL Y RENTABLE</div>
+                    <h3>Full Suite + Bonus Exclusivos</h3>
+                    <p class="tier-desc">Llevate el <strong>Pack de 300 Prompts</strong> + el sistema <strong>Generar tu Modelo</strong>, y desbloqueá absolutamente todos los regalos premium.</p>
+                    <ul class="tier-features bonus-list">
+                        <li><strong>Cheater's Dictionary:</strong> 80 prompts indetectables.</li>
+                        <li><strong>PromptGPT:</strong> La IA que crea prompts +18 por vos.</li>
+                        <li><strong>Tutorial AI UNCENSORED:</strong> La guía completa paso a paso.</li>
+                        <li><strong>Playbook Fanvue & OnlyFans:</strong> Estrategia de monetización.</li>
+                    </ul>
+                    <div class="tier-actions">
+                        <a href="https://gumroad.com" class="btn-primary btn-pay">OBTENER TODO AHORA</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta-section">
+            <div class="final-cta-container">
+                <h2>Diseñá hoy tu imperio de contenido</h2>
+                <p>Unite al flujo técnico y estético definitivo para dar vida a personajes consistentes en tiempo récord y monetizarlos.</p>
+                <a href="#pricing" class="btn-primary">DESCARGAR TODO <span class="arrow-icon">→</span></a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>MADE WITH AI WORKFLOW · 2026 · @connieferalofficial</p>
+            <p>Soporte por IG exclusivo: <a href="https://www.instagram.com/connieferalofficial" target="_blank">@connieferalofficial</a></p>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT DE INTERACTIVIDAD (Optimizado para móviles: 60 FPS, Touch events) -->
+    <script>
+        // Declaramos las clases en el contexto global del script
+        class Glitter {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 12 + 4;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.speedY = (Math.random() - 0.5) * 1.5 - 0.5;
+                this.opacity = 1;
+                this.decay = Math.random() * 0.015 + 0.01;
+                this.angle = Math.random() * Math.PI * 2;
+                this.spin = (Math.random() - 0.5) * 0.05;
+                this.type = Math.floor(Math.random() * 3);
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.opacity -= this.decay;
+                this.angle += this.spin;
+            }
+
+            draw(ctx) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.globalAlpha = this.opacity;
+                
+                // Colores oficiales de la Paleta: Petal Rouge, Rose Punch, Strawberry Red, Vintage Berry
+                const colors = ['#FF7099', '#DF367C', '#FF3E41', '#883955'];
+                ctx.fillStyle = colors[Math.floor(this.x + this.y) % colors.length];
+
+                if (this.type === 0) {
+                    // Estrella retro de 4 puntas
+                    ctx.beginPath();
+                    for (let i = 0; i < 4; i++) {
+                        ctx.lineTo(0, -this.size);
+                        ctx.rotate(Math.PI / 4);
+                        ctx.lineTo(0, -this.size * 0.35);
+                        ctx.rotate(Math.PI / 4);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                } else if (this.type === 1) {
+                    // Corazón
+                    ctx.beginPath();
+                    ctx.moveTo(0, -this.size * 0.2);
+                    ctx.bezierCurveTo(-this.size * 0.5, -this.size * 0.7, -this.size, -this.size * 0.3, 0, this.size * 0.5);
+                    ctx.bezierCurveTo(this.size, -this.size * 0.3, this.size * 0.5, -this.size * 0.7, 0, -this.size * 0.2);
+                    ctx.fill();
+                } else {
+                    // Huellita tierna
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size * 0.35, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(-this.size * 0.3, -this.size * 0.3, this.size * 0.18, 0, Math.PI * 2);
+                    ctx.arc(0, -this.size * 0.42, this.size * 0.18, 0, Math.PI * 2);
+                    ctx.arc(this.size * 0.3, -this.size * 0.3, this.size * 0.18, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        class AuroraBlob {
+            constructor(width, height) {
+                this.size = Math.random() * 200 + (width < 600 ? 150 : 300);
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                
+                // Selección suave y traslúcida de la paleta oficial
+                const colorChoices = [
+                    'rgba(255, 112, 153, 0.15)', // Petal Rouge
+                    'rgba(223, 54, 124, 0.12)',  // Rose Punch
+                    'rgba(136, 57, 85, 0.08)'    // Vintage Berry
+                ];
+                this.color = colorChoices[Math.floor(Math.random() * colorChoices.length)];
+                this.width = width;
+                this.height = height;
+            }
+
+            update(mouse, width, height) {
+                this.width = width;
+                this.height = height;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < -this.size) this.x = this.width + this.size;
+                if (this.x > this.width + this.size) this.x = -this.size;
+                if (this.y < -this.size) this.y = this.height + this.size;
+                if (this.y > this.height + this.size) this.y = -this.size;
+
+                if (mouse.active) {
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < 280) {
+                        const force = (280 - dist) / 280;
+                        this.x += (dx / dist) * force * 1.5;
+                        this.y += (dy / dist) * force * 1.5;
+                    }
+                }
+            }
+
+            draw(ctx) {
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'rgba(15, 9, 17, 0)');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        window.onload = function() {
+            initAmbientCanvas();
+        };
+
+        // --- CANVAS DE AURORAS FLUIDAS Y EMISOR DE GLITTER ---
+        function initAmbientCanvas() {
+            const canvas = document.getElementById('ambient-canvas');
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            let particles = [];
+            let auroras = [];
+            let mouse = { x: -1000, y: -1000, active: false };
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            function setPointer(e) {
+                mouse.active = true;
+                if (e.touches && e.touches.length > 0) {
+                    mouse.x = e.touches[0].clientX;
+                    mouse.y = e.touches[0].clientY;
+                } else {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                }
+                if (Math.random() < 0.35) {
+                    particles.push(new Glitter(mouse.x, mouse.y));
+                }
+            }
+
+            window.addEventListener('mousemove', setPointer);
+            window.addEventListener('touchmove', setPointer);
+            window.addEventListener('touchstart', setPointer);
+
+            window.addEventListener('mouseleave', () => { mouse.active = false; });
+            window.addEventListener('touchend', () => { mouse.active = false; });
+
+            const auroraCount = width < 600 ? 3 : 5;
+            for (let i = 0; i < auroraCount; i++) {
+                auroras.push(new AuroraBlob(width, height));
+            }
+
+            function animate() {
+                ctx.fillStyle = 'rgba(15, 9, 17, 0.2)'; 
+                ctx.fillRect(0, 0, width, height);
+
+                for (let blob of auroras) {
+                    blob.update(mouse, width, height);
+                    blob.draw(ctx);
+                }
+
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    particles[i].update();
+                    if (particles[i].opacity <= 0) {
+                        particles.splice(i, 1);
+                    } else {
+                        particles[i].draw(ctx);
+                    }
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+    </script>
+</body>
+</html>
