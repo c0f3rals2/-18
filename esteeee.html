@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>300+ Prompts & Sistema Avatar para mayores de 18 años con IA que genera ingresos en Fanvue y OnlyFans.</title>
+    <!-- Google Fonts: Elegancia y modernidad sans-serif/serif para un tono Cute Editorial -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ---- VARIABLES DE COLOR Y EFECTOS ESTÉTICOS (PALETA OFICIAL EXACTA) ---- */
+        :root {
+            --petal-rouge: #FF7099;
+            --rose-punch: #DF367C;
+            --strawberry-red: #FF3E41;
+            --vintage-berry: #883955;
+            --vintage-grape: #4C3549;
+            
+            /* Fondos y textos adaptados */
+            --white: #F8F9FA; 
+            --gray: #C4B2BC;  
+            --bg-dark: #120A13; /* Noche urbana oscura basada en Vintage Grape */
+            --card-glass: rgba(76, 53, 73, 0.45); /* Vidrio esmerilado violeta profundo */
+            --border-glass: rgba(255, 112, 153, 0.2); 
+            --neon-glow: rgba(223, 54, 124, 0.4);
+        }
+
+        /* ---- RESET & BASE ---- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            cursor: crosshair;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(223, 54, 124, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(255, 62, 65, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(136, 57, 85, 0.06) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* ---- CANVAS INTERACTIVO DE AURORAS LÍQUIDAS Y PURPURINA ---- */
+        #ambient-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.85; 
+        }
+
+        /* ---- CONTENEDOR PRINCIPAL ---- */
+        .page-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ---- HEADER / BRANDING ---- */
+        header {
+            width: 100%;
+            padding: 24px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 15px rgba(255, 112, 153, 0.4);
+        }
+
+        .brand-logo span {
+            color: var(--petal-rouge);
+        }
+
+        .tag-pill-top {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--white);
+            background: rgba(223, 54, 124, 0.2);
+            border: 1px solid rgba(223, 54, 124, 0.5);
+            padding: 4px 12px;
+            border-radius: 999px;
+            text-transform: uppercase;
+        }
+
+        /* ---- HERO / HOOK DE CONVERSIÓN ---- */
+        .hero {
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tag-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 112, 153, 0.1);
+            border: 1px solid rgba(255, 112, 153, 0.3);
+            color: var(--petal-rouge);
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: clamp(11px, 2vw, 13px);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+            animation: softPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes softPulse {
+            0%, 100% { transform: scale(1); opacity: 0.95; }
+            50% { transform: scale(1.02); opacity: 1; box-shadow: 0 0 20px rgba(255, 112, 153, 0.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 7vw, 76px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--white) 0%, var(--petal-rouge) 40%, var(--rose-punch) 70%, var(--strawberry-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 15px rgba(223, 54, 124, 0.3));
+        }
+
+        .hero-desc {
+            font-size: clamp(15px, 2.5vw, 19px);
+            line-height: 1.6;
+            color: var(--gray);
+            max-width: 680px;
+            margin: 0 auto 36px;
+            font-weight: 300;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---- BOTONES PREMIUM ---- */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--rose-punch) 0%, var(--strawberry-red) 100%);
+            color: var(--white);
+            padding: 16px 36px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 25px rgba(255, 62, 65, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(223, 54, 124, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--white);
+            padding: 15px 36px;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 112, 153, 0.1);
+            border-color: var(--petal-rouge);
+            box-shadow: 0 0 15px rgba(255, 112, 153, 0.2);
+        }
+
+        /* ---- COVER 300 PROMPTS SECTION ---- */
+        .cover-section {
+            padding: 0 20px 60px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cover-img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(223, 54, 124, 0.3);
+            transition: transform 0.4s ease;
+        }
+
+        .cover-img:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(223, 54, 124, 0.3);
+        }
+
+        /* ---- GALERÍA CIRCULAR GIGANTE (F1 a F5) ---- */
+        .gallery-container {
+            width: 100%;
+            padding: 0 20px;
+            margin-bottom: 80px;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 20px 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            scroll-behavior: smooth;
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-item {
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            position: relative;
+        }
+
+        .gallery-item .circle-photo {
+            width: clamp(240px, 50vw, 320px);
+            height: clamp(240px, 50vw, 320px);
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            border: 2px solid rgba(255, 112, 153, 0.4);
+            box-shadow: 
+                0 0 15px rgba(255, 112, 153, 0.3),
+                0 0 30px rgba(223, 54, 124, 0.25),
+                0 0 45px rgba(136, 57, 85, 0.2); 
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-item:hover .circle-photo {
+            transform: scale(1.03) rotate(1deg);
+            border-color: var(--white);
+            box-shadow: 
+                0 0 25px rgba(255, 112, 153, 0.5),
+                0 0 50px rgba(223, 54, 124, 0.5),
+                0 0 70px rgba(255, 62, 65, 0.3);
+        }
+
+        /* ---- INTERACTIVE NSFW TEASER BLOCK ---- */
+        .nsfw-section {
+            padding: 40px 20px 100px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .nsfw-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: var(--white);
+        }
+
+        .nsfw-container {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 4/5;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid var(--border-glass);
+            box-shadow: 0 15px 50px rgba(223, 54, 124, 0.25);
+            background: #000;
+        }
+
+        .nsfw-container img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        .img-ropa {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 3;
+        }
+
+        .img-naked {
+            opacity: 0;
+            z-index: 2;
+            transform: scale(1.05);
+        }
+
+        .nsfw-warning-badge {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(255, 62, 65, 0.2);
+            border: 1px solid rgba(255, 62, 65, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 80%;
+            z-index: 4;
+        }
+
+        .warning-icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .warning-text {
+            font-family: 'Space Mono', monospace;
+            color: var(--strawberry-red);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .warning-sub {
+            font-size: 11px;
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        /* ESTADOS DEL INTERACTIVE NSFW */
+        .nsfw-container[data-state="0"] .img-ropa { opacity: 1; }
+        .nsfw-container[data-state="0"] .img-naked { opacity: 0; filter: blur(0); }
+        .nsfw-container[data-state="0"] .nsfw-warning-badge { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+
+        .nsfw-container[data-state="1"] .img-ropa { opacity: 0; transform: scale(0.95); }
+        .nsfw-container[data-state="1"] .img-naked { opacity: 1; filter: blur(25px) brightness(0.65); transform: scale(1); }
+        .nsfw-container[data-state="1"] .nsfw-warning-badge { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+        .nsfw-container[data-state="2"] .img-ropa { opacity: 0; transform: scale(0.95); }
+        .nsfw-container[data-state="2"] .img-naked { opacity: 1; filter: blur(0px) brightness(1); transform: scale(1); }
+        .nsfw-container[data-state="2"] .nsfw-warning-badge { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+
+        /* ---- TÍTULOS DE SECCIÓN ---- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 0 20px;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--petal-rouge);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        /* ---- SISTEMA DE PRECIOS PRINCIPAL ---- */
+        .pricing-section {
+            padding: 0 20px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .tier-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 40px 32px;
+            backdrop-filter: blur(30px);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(223, 54, 124, 0.4);
+            box-shadow: 0 15px 40px rgba(136, 57, 85, 0.2);
+        }
+
+        .tier-card.featured {
+            border: 2px solid var(--petal-rouge);
+            background: linear-gradient(180deg, rgba(136, 57, 85, 0.6) 0%, rgba(18, 10, 20, 0.8) 100%);
+            box-shadow: 0 10px 40px rgba(223, 54, 124, 0.2);
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--petal-rouge), var(--rose-punch));
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 4px 16px;
+            border-radius: 999px;
+            box-shadow: 0 4px 15px rgba(255, 42, 133, 0.4);
+            white-space: nowrap;
+        }
+
+        .tier-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .tier-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .tier-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 40px;
+            flex-grow: 1;
+        }
+
+        .tier-features li {
+            font-size: 14px;
+            color: var(--white);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        .tier-features li::before {
+            content: '✦';
+            color: var(--petal-rouge);
+            flex-shrink: 0;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+        
+        .tier-features.bonus-list li::before {
+            content: '🎁';
+            color: transparent;
+            text-shadow: 0 0 0 var(--rose-punch);
+            font-size: 14px;
+        }
+
+        .tier-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .tier-actions .btn-pay {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            padding: 14px 20px;
+            font-size: 14px;
+            border-radius: 10px;
+        }
+
+        /* ---- FINAL CTA ---- */
+        .final-cta-section {
+            padding: 80px 20px 120px;
+            text-align: center;
+            position: relative;
+        }
+
+        .final-cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-cta-container h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 6vw, 52px);
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .btn-primary .arrow-icon {
+            background: none !important;
+            width: auto !important;
+            height: auto !important;
+            display: inline-block !important;
+            font-style: normal;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer p {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--gray);
+            letter-spacing: 1px;
+        }
+
+        footer a {
+            color: var(--petal-rouge);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--strawberry-red); 
+        }
+
+        /* ========================================================
+           SECRET BUTTON & IMMERSIVE CONTENIDO MODAL
+           ======================================================== */
+        
+        .secret-trigger {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 50; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-contenido {
+            background: linear-gradient(135deg, var(--rose-punch), var(--strawberry-red));
+            color: var(--white);
+            border: 2px solid rgba(255, 112, 153, 0.5);
+            padding: 14px 32px;
+            border-radius: 999px;
+            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(223, 54, 124, 0.6);
+            z-index: 2;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: pulseSecret 2s infinite;
+        }
+
+        .btn-contenido:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 62, 65, 0.8);
+        }
+
+        @keyframes pulseSecret {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 62, 65, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(223, 54, 124, 0.8); }
+        }
+
+        .emoji-float {
+            position: absolute;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .e-1 { animation: floatEmoji 3s infinite 0s; top: -15px; left: -10px; }
+        .e-2 { animation: floatEmoji 3.5s infinite 0.5s; top: -25px; right: 5px; }
+        .e-3 { animation: floatEmoji 4s infinite 1s; bottom: -10px; left: -25px; }
+        .e-4 { animation: floatEmoji 3.2s infinite 1.5s; bottom: -5px; right: -15px; }
+        .e-5 { animation: floatEmoji 3.8s infinite 2s; top: -35px; left: 40%; }
+
+        @keyframes floatEmoji {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            30% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translateY(-45px) scale(1.3) rotate(15deg); opacity: 0; }
+        }
+
+        /* --- MINI WEB MODAL COMPLETAMENTE TRASLÚCIDO CON BURBUJAS --- */
+        .mini-web-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(18, 10, 20, 0.94); 
+            backdrop-filter: blur(15px);
+            z-index: 9999; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            overflow: hidden;
+        }
+
+        .mini-web-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mini-web-content {
+            background: linear-gradient(135deg, rgba(76, 53, 73, 0.85), rgba(136, 57, 85, 0.85));
+            border: 2px solid var(--petal-rouge);
+            padding: 40px 24px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 520px;
+            width: 92%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(223, 54, 124, 0.3);
+            transform: translateY(50px) scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10;
+        }
+
+        /* Ocultar barra de scroll interna del modal en celulares */
+        .mini-web-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .mini-web-content::-webkit-scrollbar-thumb {
+            background: var(--petal-rouge);
+            border-radius: 4px;
+        }
+
+        .mini-web-overlay.active .mini-web-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .close-mini-web {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--petal-rouge);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            z-index: 12;
+        }
+
+        .close-mini-web:hover {
+            color: var(--white);
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .mini-web-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 6vw, 42px);
+            color: var(--white);
+            margin-bottom: 24px;
+            text-shadow: 0 0 10px rgba(255, 112, 153, 0.5);
+        }
+
+        /* Contenedor de las dos ofertas del Modal */
+        .mini-web-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .mini-web-card {
+            background: rgba(18, 10, 20, 0.7);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 24px 20px;
+            text-align: left;
+        }
+
+        .mini-web-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--white);
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 112, 153, 0.15);
+            padding-bottom: 8px;
+        }
+
+        .mini-web-card .tier-price {
+            font-size: 40px;
+            color: var(--strawberry-red);
+            margin: 10px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+            font-weight: 700;
+        }
+
+        .mini-web-card .tier-price span {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: 300;
+        }
+
+        /* ---- CUESTIONARIO INTERACTIVO DE CONTENIDO PERSONALIZADO ---- */
+        .quiz-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .quiz-question {
+            background: rgba(76, 53, 73, 0.3);
+            border: 1px dashed rgba(255, 112, 153, 0.2);
+            padding: 14px;
+            border-radius: 12px;
+        }
+
+        .quiz-question p {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--petal-rouge);
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .quiz-option {
+            background: rgba(18, 10, 20, 0.5);
+            border: 1px solid rgba(255, 112, 153, 0.1);
+            color: var(--gray);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: rgba(223, 54, 124, 0.15);
+            border-color: var(--petal-rouge);
+            color: var(--white);
+        }
+
+        .quiz-option.selected {
+            background: linear-gradient(135deg, var(--rose-punch), var(--strawberry-red));
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 0 10px rgba(223, 54, 124, 0.3);
+        }
+
+        /* ---- SISTEMA DE BURBUJAS FLOTANTES REALISTAS (Solo en Modal) ---- */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            overflow: hidden;
+            pointer-events: all;
+            z-index: 1;
+            /* Efecto cristalino brillante ultra-translúcido */
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 112, 153, 0.08) 50%, rgba(0, 0, 0, 0.2) 100%);
+            box-shadow: 
+                inset 0 10px 20px rgba(255, 255, 255, 0.25),
+                inset 0 -10px 20px rgba(0, 0, 0, 0.3),
+                inset -5px 0 10px rgba(255, 112, 153, 0.15),
+                inset 5px 0 10px rgba(223, 54, 124, 0.15),
+                0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1.5px solid rgba(255, 112, 153, 0.25);
+            backdrop-filter: blur(1.5px);
+            transition: transform 0.1s linear, opacity 0.3s ease;
+        }
+
+        /* Foto encapsulada dentro de la burbuja con total traslucidez */
+        .bubble img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            opacity: 0.45; /* Muy translúcida como se solicitó */
+            mix-blend-mode: luminosity;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .bubble:hover img {
+            opacity: 0.7;
+            mix-blend-mode: normal;
+        }
+
+        /* Animación de explotar burbuja */
+        .bubble.pop-explode {
+            animation: bubblePop 0.25s forwards cubic-bezier(0.1, 0.8, 0.3, 1);
+        }
+
+        @keyframes bubblePop {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.8; filter: brightness(1.5); }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        /* ---- LIQUIDO ESPESO BLANCO CANVAS (Encima del modal) ---- */
+        #splatter-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10000; /* Siempre sobre el modal */
+        }
+
+        /* ---- TOAST DE ALERTA PERSONALIZADA EVITA BLOQUEO DE IFRAME ---- */
+        .custom-toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(50px);
+            background: linear-gradient(135deg, var(--vintage-berry), var(--rose-punch));
+            border: 2px solid var(--petal-rouge);
+            padding: 14px 28px;
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 100000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .custom-toast.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: all;
+        }
+
+        @media (max-width: 768px) {
+            .secret-trigger { bottom: 20px; right: 20px; }
+            .btn-contenido { padding: 12px 24px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas de Ambiente de Auroras Líquidas (Fondo principal) -->
+    <canvas id="ambient-canvas"></canvas>
+
+    <!-- ==== TOAST NOTIFICATION PARA ERRORES/AVISOS ==== -->
+    <div id="customToast" class="custom-toast">
+        <span id="toastMessage">Por favor selecciona una opción...</span>
+    </div>
+
+    <!-- ==== BOTÓN SECRETO FLOTANTE CON EMOJIS ALREDEDOR ==== -->
+    <div class="secret-trigger">
+        <span class="emoji-float e-1">🔥</span>
+        <span class="emoji-float e-2">😈</span>
+        <span class="emoji-float e-3">👅</span>
+        <span class="emoji-float e-4">💦</span>
+        <span class="emoji-float e-5">🍑</span>
+        <button class="btn-contenido" onclick="openMiniWeb()">CONTENIDO</button>
+    </div>
+
+    <!-- ==== MINI WEB (MODAL INTERACTIVO DE CONTENIDO) ==== -->
+    <div id="secretModal" class="mini-web-overlay">
+        <!-- Canvas de partículas de líquido espeso blanco -->
+        <canvas id="splatter-canvas"></canvas>
+
+        <div class="mini-web-content">
+            <button class="close-mini-web" onclick="closeMiniWeb()">✕</button>
+            <h2>Contenido</h2>
+            
+            <div class="mini-web-grid">
+                <!-- Oferta 1: Pack Etéreo Furry a $2 USD -->
+                <div class="mini-web-card">
+                    <h3>Pack Etéreo Furry</h3>
+                    <div class="tier-price"><sup>$</sup>2<span>USD</span></div>
+                    <p class="tier-desc" style="font-size: 13px; color: var(--gray); line-height: 1.5; margin-bottom: 16px;">
+                        Set temático y coqueto de fantasía furry. Facciones sumamente nítidas, estética impecable y renders sin filtros.
+                    </p>
+                    <div class="tier-actions">
+                        <a href="https://gumroad.com" class="btn-primary btn-pay" style="width:100%; justify-content:center;">OBTENER YA</a>
+                    </div>
+                </div>
+
+                <!-- Oferta 2: Contenido Personalizado Cuestionario -->
+                <div class="mini-web-card">
+                    <h3>Contenido Personalizado</h3>
+                    <p class="tier-desc" style="font-size: 13px; color: var(--gray); line-height: 1.5; margin-bottom: 12px;">
+                        Diseña tu set a medida. Elige tus 3 preferencias para generar una cotización automatizada.
+                    </p>
+                    
+                    <div class="quiz-container">
+                        <!-- Pregunta 1 -->
+                        <div class="quiz-question" data-question="1">
+                            <p>1. ¿Qué temática de lencería prefieres?</p>
+                            <div class="quiz-options">
+                                <button class="quiz-option" onclick="selectQuizOption(this, 1)">Cosplay Alternativo</button>
+                                <button class="quiz-option" onclick="selectQuizOption(this, 1)">Encajes Transparentes</button>
+                                <button class="quiz-option" onclick="selectQuizOption(this, 1)">Atuendo Casual y Atrevido</button>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 2 -->
+                        <div class="quiz-question" data-question="2">
+                            <p>2. ¿Qué tipo de poses o enfoque buscas?</p>
+                            <div class="quiz-options">
+                                <button class="quiz-option" onclick="selectQuizOption(this, 2)">Enfoque en Facciones / Close-ups</button>
+                                <button class="quiz-option" onclick="selectQuizOption(this, 2)">Set de Cuerpo Completo Estilizado</button>
+                                <button class="quiz-option" onclick="selectQuizOption(this, 2)">Ángulos POV Seducción Real</button>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 3 -->
+                        <div class="quiz-question" data-question="3">
+                            <p>3. ¿Qué atmósfera de iluminación prefieres?</p>
+                            <div class="quiz-options">
+                                <button class="quiz-option" onclick="selectQuizOption(this, 3)">Estudio Nocturno con Luces Neón</button>
+                                <button class="quiz-option" onclick="selectQuizOption(this, 3)">Luz Natural de Tarde / Golden Hour</button>
+                                <button class="quiz-option" onclick="selectQuizOption(this, 3)">Misterioso y Sugerente Oscuro</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tier-actions" style="margin-top: 20px;">
+                        <button class="btn-primary btn-pay" id="btnPersonalizar" style="width:100%; justify-content:center;" onclick="enviarPersonalizado()">SOLICITAR MI SET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL DE LA WEB (LANDING PAGES) -->
+    <div class="page-wrapper">
+        
+        <!-- Header -->
+        <header>
+            <a href="#" class="brand-logo">CONNIE<span>FERAL</span></a>
+            <div class="tag-pill-top">DROP OFICIAL 2026</div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="tag-badge">
+                <span>🎀</span> SISTEMA PROBADO DE DISEÑO Y MONETIZACIÓN
+            </div>
+            <h1>El pack definitivo <span>+300 Prompts AI</span></h1>
+            <p class="hero-desc">
+                Desbloqueá el diccionario exacto para generar lencería hiperrealista, poses explícitas y texturas orgánicas. Además, aprendé a generar tu propio modelo virtual consistente.
+            </p>
+            <div class="hero-ctas">
+                <a href="#pricing" class="btn-primary">OBTENER YA <span class="arrow-icon">→</span></a>
+                <a href="#nsfw" class="btn-ghost">Ver Transformación</a>
+            </div>
+        </section>
+
+        <!-- Cover 300 Prompts -->
+        <section class="cover-section">
+            <img src="portada300.png" alt="300 Prompts Cover" class="cover-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80';">
+        </section>
+
+        <!-- Galería de Fotos Circulares Gigantes (F1 a F5) -->
+        <section class="gallery-container">
+            <div class="gallery-scroll">
+                <div class="gallery-item">
+                    <img src="foto-connie-01.png" alt="Ejemplo 1" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80';">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto-connie-02.png" alt="Ejemplo 2" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80';">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto-connie-03.png" alt="Ejemplo 3" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&q=80';">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto-connie-04.png" alt="Ejemplo 4" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=80';">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto-connie-05.png" alt="Ejemplo 5" class="circle-photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1563089145-599997674d42?w=400&q=80';">
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloque Interactivo Ropa -> Naked NSFW (CORREGIDO LÓGICA PASO A PASO) -->
+        <section class="nsfw-section" id="nsfw">
+            <h3 class="nsfw-title">Transformación Sin Censura</h3>
+            <p class="hero-desc" style="font-size: 14px; margin-bottom: 30px;">Toca la imagen para revelar la versión generada con nuestro sistema.</p>
+            
+            <div class="nsfw-container" id="nsfwTeaser" data-state="0" onclick="handleNsfwClick(this)">
+                <!-- Estado 0 & 1: Ropa -->
+                <img src="ropa.png" class="img-ropa" alt="Modelo con Ropa" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80';">
+                
+                <!-- Estado 1 & 2: Naked -->
+                <img src="naked.png" class="img-naked" alt="Modelo Sin Censura" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?w=500&q=80';">
+                
+                <!-- Warning Overlay (Estado 1) -->
+                <div class="nsfw-warning-badge">
+                    <span class="warning-icon">🔞</span>
+                    <span class="warning-text">ADVERTENCIA</span>
+                    <span class="warning-sub">Toca de nuevo para quitar censura</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Oferta Principal -->
+        <section class="pricing-section" id="pricing">
+            <div class="section-header">
+                <span class="section-label">El ecosistema completo</span>
+                <h2>Elige tu pack de creación</h2>
+            </div>
+            <div class="pricing-grid">
+                
+                <!-- Card 1: 300 Prompts -->
+                <div class="tier-card">
+                    <h3>Pack 300+ Prompts Exclusivos</h3>
+                    <p class="tier-desc">La biblioteca completa de tecnicas listas para usar. Copia, pega y genera contenido altamente monetizable en segundos.</p>
+                    <ul class="tier-features">
+                        <li>300+ prompts +18 listos para copiar y pegar.</li>
+                        <li>Organizados por categoría: Lencería, baño y gym.</li>
+                        <li>Escenas POV y fetiches .</li>
+                        <li>Packs PPV estructurados.</li>
+                        <li>Mensajes personalizados (Custom DMs) y más.</li>
+                    </ul>
+                    <div class="tier-actions">
+                        <a href="https://gumroad.com" class="btn-primary btn-pay">DESCARGAR PACK</a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Generar Modelo -->
+                <div class="tier-card">
+                    <h3>Genera tu Propio Modelo AI</h3>
+                    <p class="tier-desc">El método paso a paso para crear una identidad digital hiperrealista y mantener la consistencia de su rostro en cualquier pose.</p>
+                    <ul class="tier-features">
+                        <li>Configuración del modelo base y anatomía.</li>
+                        <li>Fijación de rostro para consistencia 100% exacta.</li>
+                        <li>Dominio de texturas de piel realistas.</li>
+                        <li>Iluminación de estudio y control de escenarios.</li>
+                        <li>Workflows gratuitos y sin complicaciones.</li>
+                    </ul>
+                    <div class="tier-actions">
+                        <a href="https://gumroad.com" class="btn-primary btn-pay">OBTENER SISTEMA</a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Bundle + Bonus (DESTACADO) -->
+                <div class="tier-card featured">
+                    <div class="tier-badge">LA FÓRMULA VIRAL Y RENTABLE</div>
+                    <h3>Full Suite + Bonus Exclusivos</h3>
+                    <p class="tier-desc">Llevate el <strong>Pack de 300 Prompts</strong> + el sistema <strong>Generar tu Modelo</strong>, y desbloqueá absolutamente todos los regalos premium.</p>
+                    <ul class="tier-features bonus-list">
+                        <li><strong>Cheater's Dictionary:</strong> 80 prompts indetectables.</li>
+                        <li><strong>PromptGPT:</strong> La IA que crea prompts +18 por vos.</li>
+                        <li><strong>Tutorial AI UNCENSORED:</strong> La guía completa paso a paso.</li>
+                        <li><strong>Playbook Fanvue & OnlyFans:</strong> Estrategia de monetización.</li>
+                    </ul>
+                    <div class="tier-actions">
+                        <a href="https://gumroad.com" class="btn-primary btn-pay">OBTENER TODO AHORA</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta-section">
+            <div class="final-cta-container">
+                <h2>Diseñá hoy tu avatar de contenido</h2>
+                <a href="#pricing" class="btn-primary">DESCARGAR TODO <span class="arrow-icon">→</span></a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>MADE WITH AI WORKFLOW · 2026 · @connieferal.s2</p>
+            <p>Soporte por IG exclusivo: <a href="https://www.instagram.com/connieferal.s2" target="_blank">@connieferal.s2</a></p>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT DE INTERACTIVIDAD -->
+    <script>
+        // --- DECLARACIONES GLOBALES Y HOISTING DE CLASES ---
+        let bubblesArray = [];
+        let bubbleInterval = null;
+        let splatterCanvas = null;
+        let splatterCtx = null;
+        let splats = [];
+        const respuestasQuiz = { 1: null, 2: null, 3: null };
+
+        class Glitter {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 12 + 4;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.speedY = (Math.random() - 0.5) * 1.5 - 0.5;
+                this.opacity = 1;
+                this.decay = Math.random() * 0.015 + 0.01;
+                this.angle = Math.random() * Math.PI * 2;
+                this.spin = (Math.random() - 0.5) * 0.05;
+                this.type = Math.floor(Math.random() * 3);
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.opacity -= this.decay;
+                this.angle += this.spin;
+            }
+
+            draw(ctx) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.globalAlpha = this.opacity;
+                
+                const colors = ['#FF7099', '#DF367C', '#FF3E41', '#883955'];
+                ctx.fillStyle = colors[Math.floor(this.x + this.y) % colors.length];
+
+                if (this.type === 0) {
+                    ctx.beginPath();
+                    for (let i = 0; i < 4; i++) {
+                        ctx.lineTo(0, -this.size);
+                        ctx.rotate(Math.PI / 4);
+                        ctx.lineTo(0, -this.size * 0.35);
+                        ctx.rotate(Math.PI / 4);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                } else if (this.type === 1) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, -this.size * 0.2);
+                    ctx.bezierCurveTo(-this.size * 0.5, -this.size * 0.7, -this.size, -this.size * 0.3, 0, this.size * 0.5);
+                    ctx.bezierCurveTo(this.size, -this.size * 0.3, this.size * 0.5, -this.size * 0.7, 0, -this.size * 0.2);
+                    ctx.fill();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size * 0.35, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(-this.size * 0.3, -this.size * 0.3, this.size * 0.18, 0, Math.PI * 2);
+                    ctx.arc(0, -this.size * 0.42, this.size * 0.18, 0, Math.PI * 2);
+                    ctx.arc(this.size * 0.3, -this.size * 0.3, this.size * 0.18, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        class AuroraBlob {
+            constructor(width, height) {
+                this.size = Math.random() * 200 + (width < 600 ? 150 : 300);
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                
+                const colorChoices = [
+                    'rgba(255, 112, 153, 0.12)', 
+                    'rgba(223, 54, 124, 0.1)',  
+                    'rgba(136, 57, 85, 0.08)'   
+                ];
+                this.color = colorChoices[Math.floor(Math.random() * colorChoices.length)];
+                this.width = width;
+                this.height = height;
+            }
+
+            update(mouse, width, height) {
+                this.width = width;
+                this.height = height;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < -this.size) this.x = this.width + this.size;
+                if (this.x > this.width + this.size) this.x = -this.size;
+                if (this.y < -this.size) this.y = this.height + this.size;
+                if (this.y > this.height + this.size) this.y = -this.size;
+
+                if (mouse.active) {
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < 280) {
+                        const force = (280 - dist) / 280;
+                        this.x += (dx / dist) * force * 1.5;
+                        this.y += (dy / dist) * force * 1.5;
+                    }
+                }
+            }
+
+            draw(ctx) {
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'rgba(25, 16, 24, 0)');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // --- SISTEMA DE ALERTA/NOTIFICACIÓN REEMPLAZA EL ALERT BLOQUEADO ---
+        function showToast(message) {
+            const toast = document.getElementById('customToast');
+            const text = document.getElementById('toastMessage');
+            if (toast && text) {
+                text.innerText = message;
+                toast.classList.add('active');
+                setTimeout(() => {
+                    toast.classList.remove('active');
+                }, 3000);
+            }
+        }
+
+        // --- FUNCIÓN DEL EMBUDO INTERACTIVO NSFW EN 3 PASOS ---
+        function handleNsfwClick(container) {
+            let currentState = parseInt(container.getAttribute('data-state') || '0');
+            let nextState = (currentState + 1) % 3;
+            container.setAttribute('data-state', nextState);
+        }
+
+        // --- SISTEMA DEL CUESTIONARIO INTERACTIVO ---
+        function selectQuizOption(btn, preguntaNum) {
+            const siblings = btn.parentNode.querySelectorAll('.quiz-option');
+            siblings.forEach(opt => opt.classList.remove('selected'));
+            btn.classList.add('selected');
+            respuestasQuiz[preguntaNum] = btn.innerText;
+        }
+
+        function enviarPersonalizado() {
+            if (!respuestasQuiz[1] || !respuestasQuiz[2] || !respuestasQuiz[3]) {
+                showToast("Por favor selecciona una opción para cada una de las 3 preguntas. 🎀");
+                return;
+            }
+            const urlGumroad = `https://gumroad.com?tematica=${encodeURIComponent(respuestasQuiz[1])}&enfoque=${encodeURIComponent(respuestasQuiz[2])}&atmosfera=${encodeURIComponent(respuestasQuiz[3])}`;
+            window.location.href = urlGumroad;
+        }
+
+        // --- FUNCIONES PARA ABRIR Y CERRAR LA MINI WEB "CONTENIDO" ---
+        function openMiniWeb() {
+            document.getElementById('secretModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            startBubbles();
+        }
+
+        function closeMiniWeb() {
+            document.getElementById('secretModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            clearModalBubbles();
+        }
+
+        // ========================================================
+        // GESTIÓN DE BURBUJAS FLOTANTES REALISTAS EN EL MODAL
+        // ========================================================
+        function startBubbles() {
+            clearModalBubbles();
+            bubblesArray = [];
+            splats = [];
+            
+            splatterCanvas = document.getElementById('splatter-canvas');
+            if (splatterCanvas) {
+                splatterCtx = splatterCanvas.getContext('2d');
+                resizeSplatterCanvas();
+            }
+            
+            const overlay = document.getElementById('secretModal');
+            const imagesSrc = ['foto-connie-01.png', 'foto-connie-02.png', 'foto-connie-03.png', 'foto-connie-04.png', 'foto-connie-05.png'];
+            const fallbackSrcs = [
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200&q=80',
+                'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=200&q=80',
+                'https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=200&q=80',
+                'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=200&q=80',
+                'https://images.unsplash.com/photo-1563089145-599997674d42?w=200&q=80'
+            ];
+
+            imagesSrc.forEach((src, idx) => {
+                createBubbleElement(src, fallbackSrcs[idx], overlay);
+            });
+
+            if(!bubbleInterval) {
+                bubbleInterval = requestAnimationFrame(updateBubblesPhysics);
+            }
+        }
+
+        function createBubbleElement(src, fallback, parent) {
+            const size = Math.random() * 60 + 130; 
+            const bubbleEl = document.createElement('div');
+            bubbleEl.className = 'bubble';
+            bubbleEl.style.width = size + 'px';
+            bubbleEl.style.height = size + 'px';
+            
+            const img = document.createElement('img');
+            img.src = src;
+            img.onerror = function() { this.src = fallback; };
+            bubbleEl.appendChild(img);
+
+            const posX = Math.random() * (window.innerWidth - size - 20) + 10;
+            const posY = Math.random() * (window.innerHeight - size - 20) + 10;
+            
+            const bubbleObj = {
+                el: bubbleEl,
+                x: posX,
+                y: posY,
+                size: size,
+                vx: (Math.random() - 0.5) * 1.5,
+                vy: (Math.random() - 0.5) * 1.5,
+                active: true,
+                imageSrc: src,
+                fallbackSrc: fallback
+            };
+
+            bubbleEl.addEventListener('click', (e) => {
+                if(!bubbleObj.active) return;
+                triggerBubblePop(bubbleObj, e.clientX, e.clientY, parent);
+            });
+
+            parent.appendChild(bubbleEl);
+            bubblesArray.push(bubbleObj);
+        }
+
+        function triggerBubblePop(bubble, clickX, clickY, parent) {
+            bubble.active = false;
+            bubble.el.classList.add('pop-explode');
+            
+            const x = clickX || (bubble.x + bubble.size/2);
+            const y = clickY || (bubble.y + bubble.size/2);
+
+            createSplat(x, y);
+
+            setTimeout(() => {
+                if(bubble.el && bubble.el.parentNode) {
+                    bubble.el.parentNode.removeChild(bubble.el);
+                }
+                const idx = bubblesArray.indexOf(bubble);
+                if(idx > -1) bubblesArray.splice(idx, 1);
+                
+                if(document.getElementById('secretModal').classList.contains('active')) {
+                    createBubbleElement(bubble.imageSrc, bubble.fallbackSrc, parent);
+                }
+            }, 250);
+        }
+
+        function createSplat(x, y) {
+            const count = Math.random() * 20 + 25; 
+            for(let i = 0; i < count; i++) {
+                splats.push({
+                    x: x,
+                    y: y,
+                    radius: Math.random() * 15 + 8, 
+                    vx: (Math.random() - 0.5) * 10,
+                    vy: (Math.random() - 0.5) * 10 - 4, 
+                    gravity: 0.25, 
+                    opacity: 1,
+                    decay: Math.random() * 0.015 + 0.005,
+                    viscosity: Math.random() * 0.94 + 0.04 
+                });
+            }
+        }
+
+        function resizeSplatterCanvas() {
+            if(splatterCanvas) {
+                splatterCanvas.width = window.innerWidth;
+                splatterCanvas.height = window.innerHeight;
+            }
+        }
+
+        function updateBubblesPhysics() {
+            if(!document.getElementById('secretModal').classList.contains('active')) {
+                cancelAnimationFrame(bubbleInterval);
+                bubbleInterval = null;
+                return;
+            }
+
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+
+            bubblesArray.forEach(b => {
+                if(!b.active) return;
+                
+                b.x += b.vx;
+                b.y += b.vy;
+
+                if (b.x < 0) { b.x = 0; b.vx *= -1; }
+                if (b.x > w - b.size) { b.x = w - b.size; b.vx *= -1; }
+                if (b.y < 0) { b.y = 0; b.vy *= -1; }
+                if (b.y > h - b.size) { b.y = h - b.size; b.vy *= -1; }
+
+                b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
+            });
+
+            if(splatterCtx) {
+                splatterCtx.clearRect(0, 0, w, h);
+                splatterCtx.fillStyle = '#FFFFFF'; 
+
+                for(let i = splats.length - 1; i >= 0; i--) {
+                    const s = splats[i];
+                    s.vy += s.gravity;
+                    s.x += s.vx * s.viscosity;
+                    s.y += s.vy * s.viscosity;
+                    s.opacity -= s.decay;
+
+                    if(s.opacity <= 0) {
+                        splats.splice(i, 1);
+                        continue;
+                    }
+
+                    splatterCtx.save();
+                    splatterCtx.globalAlpha = s.opacity;
+                    splatterCtx.beginPath();
+                    splatterCtx.ellipse(s.x, s.y, s.radius, s.radius * 1.2, Math.atan2(s.vy, s.vx), 0, Math.PI * 2);
+                    splatterCtx.fill();
+                    splatterCtx.restore();
+                }
+            }
+
+            bubbleInterval = requestAnimationFrame(updateBubblesPhysics);
+        }
+
+        function clearModalBubbles() {
+            const bubbles = document.querySelectorAll('.bubble');
+            bubbles.forEach(b => {
+                if (b && b.parentNode) {
+                    b.parentNode.removeChild(b);
+                }
+            });
+            bubblesArray = [];
+        }
+
+        window.addEventListener('resize', resizeSplatterCanvas);
+
+        // ========================================================
+        // CANVAS DE AMBIENTE LÍQUIDO (FONDO PRINCIPAL EDITADO)
+        // ========================================================
+        function initAmbientCanvas() {
+            const canvas = document.getElementById('ambient-canvas');
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            let particles = [];
+            let auroras = [];
+            let mouse = { x: -1000, y: -1000, active: false };
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            function setPointer(e) {
+                if(document.getElementById('secretModal').classList.contains('active')) return;
+
+                mouse.active = true;
+                if (e.touches && e.touches.length > 0) {
+                    mouse.x = e.touches[0].clientX;
+                    mouse.y = e.touches[0].clientY;
+                } else {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                }
+                if (Math.random() < 0.35) {
+                    particles.push(new Glitter(mouse.x, mouse.y));
+                }
+            }
+
+            window.addEventListener('mousemove', setPointer);
+            window.addEventListener('touchmove', setPointer);
+            window.addEventListener('touchstart', setPointer);
+
+            window.addEventListener('mouseleave', () => { mouse.active = false; });
+            window.addEventListener('touchend', () => { mouse.active = false; });
+
+            const auroraCount = width < 600 ? 3 : 5;
+            for (let i = 0; i < auroraCount; i++) {
+                auroras.push(new AuroraBlob(width, height));
+            }
+
+            function animate() {
+                ctx.fillStyle = 'rgba(18, 10, 20, 0.2)'; 
+                ctx.fillRect(0, 0, width, height);
+
+                for (let blob of auroras) {
+                    blob.update(mouse, width, height);
+                    blob.draw(ctx);
+                }
+
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    particles[i].update();
+                    if (particles[i].opacity <= 0) {
+                        particles.splice(i, 1);
+                    } else {
+                        particles[i].draw(ctx);
+                    }
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        window.onload = function() {
+            initAmbientCanvas();
+        };
+    </script>
+</body>
+</html>
