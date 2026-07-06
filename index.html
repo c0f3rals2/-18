@@ -15,22 +15,23 @@
             --neon-red: #FA0D18;
             --white: #F8F7FF; 
             --gray: #E0E0E0;  
-            --card-glass: rgba(101, 2, 7, 0.4);
-            --border-glass: rgba(201, 54, 49, 0.2);
+            --card-glass: rgba(101, 2, 7, 0.35);
+            --border-glass: rgba(201, 54, 49, 0.25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         
-        /* Optimized background: CSS-only gradient animation (much lighter than Canvas) */
         body {
             background-color: var(--dark-red);
             color: var(--white);
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
-            background: linear-gradient(-45deg, #270202, #650207, #8e020a, #4a0000);
+            /* Performance: GPU accelerated background instead of JS Canvas */
+            background: linear-gradient(-45deg, #270202, #650207, #8E020A, #4a0000);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
         }
 
         @keyframes gradientBG {
@@ -50,6 +51,7 @@
             text-decoration: none;
             display: inline-block;
             transition: transform 0.2s;
+            text-align: center;
         }
 
         .btn-mp {
@@ -64,7 +66,6 @@
             text-align: center;
         }
 
-        /* Responsive grid adjustments */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -79,11 +80,11 @@
             border: 1px solid var(--border-glass);
             padding: 30px;
             border-radius: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .tier-price { font-size: 24px; font-weight: bold; margin: 15px 0; color: var(--vivid-red); }
-        
-        /* Utility */
+        .tier-price { font-size: 28px; font-weight: bold; margin: 15px 0; color: var(--vivid-red); }
         img { max-width: 100%; height: auto; }
     </style>
 </head>
@@ -108,7 +109,7 @@
                     <h3>Pack 300+ Prompts</h3>
                     <div class="tier-price">$4 USD</div>
                     <p>La biblioteca completa para generar lencería y escenas de alto estilo.</p>
-                    <a href="https://cfs2.gumroad.com/l/ghost-ier" class="btn-primary" style="width: 100%;">Comprar en Gumroad</a>
+                    <a href="https://cfs2.gumroad.com/l/ghost-ier" class="btn-primary" style="width: 100%; margin-top: auto;">Comprar en Gumroad</a>
                     <a href="#" class="btn-mp">Pagar con MercadoPago</a>
                 </div>
 
@@ -116,8 +117,8 @@
                 <div class="tier-card">
                     <h3>Genera tu propio modelo AI</h3>
                     <div class="tier-price">$15 USD</div>
-                    <p>Sistema facil para crear tu avatar con consistencia.</p>
-                    <a href="https://cfs2.gumroad.com/l/motor-avatar" class="btn-primary" style="width: 100%;">Comprar en Gumroad</a>
+                    <p>Metodología avanzada para crear tu avatar con consistencia.</p>
+                    <a href="https://cfs2.gumroad.com/l/motor-avatar" class="btn-primary" style="width: 100%; margin-top: auto;">Comprar en Gumroad</a>
                     <a href="#" class="btn-mp">Pagar con MercadoPago</a>
                 </div>
 
@@ -126,14 +127,14 @@
                     <h3>Pack completo+ Bonus exclusivos</h3>
                     <div class="tier-price">$26 USD</div>
                     <p>Todo el sistema: 300 Prompts, Workflow, Diccionario ilimitado y más.</p>
-                    <a href="https://cfs2.gumroad.com/l/full-suite" class="btn-primary" style="width: 100%;">Comprar en Gumroad</a>
+                    <a href="https://cfs2.gumroad.com/l/full-suite" class="btn-primary" style="width: 100%; margin-top: auto;">Comprar en Gumroad</a>
                     <a href="#" class="btn-mp">Pagar con MercadoPago</a>
                 </div>
 
             </div>
         </section>
 
-        <!-- Furry Pack Section -->
+        <!-- Furry Pack Section Updated -->
         <div style="text-align: center; padding: 40px;">
             <h3>¿Buscas el Pack Etéreo Furry?</h3>
             <a href="https://cfs2.gumroad.com/l/pjbwrw" class="btn-primary" style="margin-top: 20px;">Acceder a Pack Furry</a>
@@ -141,7 +142,7 @@
     </div>
 
     <script>
-        // Optimization: Lazy loading images automatically by just structure
+        // Optimization: Lazy loading images automatically
         document.querySelectorAll('img').forEach(img => img.setAttribute('loading', 'lazy'));
     </script>
 </body>
